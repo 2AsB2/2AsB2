@@ -57,27 +57,27 @@ const ERMINE = [
   "...wwwwwwwwww...",
   "...wwwwwwwwww...",
   "....wwwwwwww....",
-  "....bbbbbbbb....",
-  "...bbBbbbbbBbb..",
-  "....bbbbbbbb....",
-  "....wwwwwwbBw...",
-  "...w.wwwwwbB.w..",
-  "..ww.wwwwwwb.ww.",
-  ".....wwwwww.....",
-  ".....wwwwww.....",
-  ".....wwwwww.....",
-  ".....wwwwww.....",
-  ".....wwwwww.....",
-  ".....wwwwww.....",
-  ".....wwwwww.....",
-  ".....wwwwww...k.",
-  ".....wwwwww...w.",
-  ".....wwwwwwwww..",
+  "...bbbbbbbbbb...",
+  "..bbBbbbbbbbBb..",
+  "...bbbbbbbbbb...",
+  "...wwwwwwwwbBw..",
+  "..w.wwwwwwwbB.w.",
+  ".ww.wwwwwwwwb.ww",
+  "....wwwwwwww....",
+  "....wwwwwwww....",
+  "....wwwwwwww....",
+  "....wwwwwwww....",
+  "....wwwwwwww....",
+  "....wwwwwwww....",
+  "....wwwwwwww....",
+  "....wwwwwwww..k.",
+  "....wwwwwwww..w.",
+  "....wwwwwwwwww..",
   ".....wwwwww.....",
   ".....ss..ss.....",
 ];
 // idle frame B: head and scarf drop one row (a body row is removed) and the tail tip flicks out
-const frameB = (rows) => { const r = rows.slice(); r.splice(25, 1); r.unshift(".".repeat(16)); return r.map((x) => x === ".....wwwwww...k." ? ".....wwwwww....k" : x); };
+const frameB = (rows) => { const r = rows.slice(); r.splice(25, 1); r.unshift(".".repeat(16)); return r.map((x) => x === "....wwwwwwww..k." ? "....wwwwwwww...k" : x); };
 const ermine = outline(ERMINE), ermineB = outline(frameB(ERMINE));
 const erminePal = () => ({ o: SPRITE, w: "#FFFFFF", p: "#D9546A", s: "#D8CFBF", k: SPRITE, G: SPRITE, b: C.cobalt, B: C.cobaltDeep });
 const ES = 7, EX = 84, EY = 22;
@@ -130,21 +130,26 @@ const projectCard = (title, l1, l2, stack, icon, color) => svg(270, 140, "",
   `<text x="22" y="92" font-size="13" fill="${C.muted}" font-family="${SANS}">${l2}</text>` +
   `<text x="22" y="118" font-size="12" fill="${color}" font-family="${SANS}">${stack}</text>`);
 
-// ---------- footer: a jeepney driving by ----------
-const jeep = outline([
-  ".rrrrrrrrrrrrrr...",
-  ".hwwhwwhwwhwwhwh..",
-  ".hwwhwwhwwhwwhwhh.",
-  "hhhhhhhhhhhhhhhhhh",
-  "yyyyyyyyyyyyyyyyyh",
-  "hhhhhhhhhhhhhhhhhh",
+// ---------- footer: red roadster (modern MX-5 shape) driving right to left ----------
+const car = outline([
+  "...............g...kk.......",
+  "..............g...kkk.......",
+  "....rrrrr....g...kkk.rrrrr..",
+  "..rrrrrrrrrrrrr.....rrrrrrr.",
+  ".lrrrrrrrrrrrrrrrrrrrrrrrrrT",
+  "rrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+  "rdd.ooo.dddddddddddd.ooo.dd.",
+  "...ooooo............ooooo...",
+  "....ooo..............ooo....",
 ]);
-const wheels = (dx) => pixels(["oo..........oo"], 12 + dx, 48, 4, { o: SPRITE });
+const carPal = { o: "#1F1C19", r: "#C8323A", d: "#8E1F27", l: "#F2E3A0", T: "#5A1015", g: "#CFE0EA", k: SPRITE };
+const CY = 22;
+// rim pixel hops left/right of the wheel centre (cols 5 and 22, row 7; +1 padding) so the wheels read as spinning
+const hubs = (dx) => [5, 22].map((c) => `<rect x="${(c + 1 + dx) * 4}" y="${CY + 8 * 4}" width="4" height="4" fill="#6B6B70"/>`).join("");
 const footer = svg(840, 72,
-  `.drive{animation:drive 14s linear infinite}@keyframes drive{from{transform:translateX(-100px)}to{transform:translateX(880px)}}.f0{animation:f0 .4s step-end infinite}.f1{animation:f1 .4s step-end infinite}@keyframes f0{50%{opacity:0}}@keyframes f1{0%{opacity:0}50%{opacity:1}}`,
-  `<rect x="20" y="52" width="800" height="3" fill="${C.sand}"/>` +
-  `<g class="drive">${pixels(jeep, 0, 20, 4, { o: SPRITE, r: C.terra, h: "#E2D7C3", w: SPRITE, y: C.cobalt })}` +
-  `<g class="f0">${wheels(0)}</g><g class="f1">${wheels(4)}</g></g>`);
+  `.drive{animation:drive 12s linear infinite}@keyframes drive{from{transform:translateX(880px)}to{transform:translateX(-130px)}}.f0{animation:f0 .3s step-end infinite}.f1{animation:f1 .3s step-end infinite}@keyframes f0{50%{opacity:0}}@keyframes f1{0%{opacity:0}50%{opacity:1}}`,
+  `<rect x="20" y="${CY + car.length * 4 - 2}" width="800" height="3" fill="${C.sand}"/>` +
+  `<g class="drive">${pixels(car, 0, CY, 4, carPal)}<g class="f0">${hubs(-1)}</g><g class="f1">${hubs(1)}</g></g>`);
 
 return {
   [`assets/hero${sfx}.svg`]: hero,
