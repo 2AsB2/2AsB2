@@ -1,35 +1,36 @@
-<img src="assets/banner.svg" alt="Ange, CEO and COO at USAD Labs. Connect. Automate. Accelerate." width="100%">
+<div align="center">
 
-## Hi, I'm Ange
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
+  <img src="assets/hero.svg" width="100%" alt="ANGE: ceo of usad labs. we build the systems small businesses run on. built with friends, philippines, open for projects.">
+</picture>
 
-I run **USAD Labs**, a small software studio for SMEs in the Philippines. We replace scattered spreadsheets, chat threads and manual work with one system that runs the business: retail, food and beverage, and service shops.
+<br><br>
 
-I handle strategy, sales and project delivery, and I still build: most of what's below is my code.
+<img src="https://skillicons.dev/icons?i=ts,js,nextjs,react,tailwind,nodejs,sqlite,java,html,css,vercel,cloudflare,git,figma&perline=14" alt="TypeScript, JavaScript, Next.js, React, Tailwind, Node.js, SQLite, Java, HTML, CSS, Vercel, Cloudflare, Git, Figma" />
 
-### What we build
+<br><br>
 
-| Product | What it does |
-|---|---|
-| Restaurant POS | Orders, tables, kitchen tickets and daily sales in one screen |
-| Online booking | Customers book and pay; staff see the day at a glance |
-| Inventory | Stock levels for office and warehouse, with low-stock alerts |
-| Attendance and payroll | Face scan time-in that feeds straight into payroll |
-| Websites | Fast business sites that bring in inquiries |
-| AI automation | Agents that take repetitive work off the team |
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/bookshelf-dark.svg">
+  <img src="assets/bookshelf.svg" width="100%" alt="Bookshelf. At USAD Labs: strategy, sales, delivery, code, POS, booking, inventory, payroll, websites, AI. Off hours: art, reading, coding, sketches, novels, side projects.">
+</picture>
 
-### Featured work
+<br><br>
 
-| Project | About | Stack |
-|---|---|---|
-| [5A Rentals](https://github.com/2AsB2/house-rental-system) | A real client build: rental listings site plus an owner dashboard for tenants, rent tracking, repairs and Messenger rent reminders | Next.js, Tailwind, Drizzle, SQLite |
-| [Web portfolio](https://2asb2.github.io/Banas_WebPortfolio/) | My personal portfolio site | HTML, CSS, JavaScript |
+<a href="https://github.com/usad-labs/house-rental-system"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-rentals-dark.svg"><img src="assets/card-rentals.svg" width="32%" alt="5A Rentals: rental site and owner dashboard with Messenger reminders (Next.js, SQLite)"></picture></a>
+<a href="https://github.com/usad-labs/bluefrost-aircon"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-bluefrost-dark.svg"><img src="assets/card-bluefrost.svg" width="32%" alt="Bluefrost Aircon: landing page for an aircon repair shop, Lighthouse 100 (Astro, TypeScript)"></picture></a>
+<a href="https://2asb2.github.io/Banas_WebPortfolio/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-portfolio-dark.svg"><img src="assets/card-portfolio.svg" width="32%" alt="Portfolio: my personal site and older web work"></picture></a>
 
-### Tools I use
+<br><br>
 
-<p>
-  <img src="https://skillicons.dev/icons?i=ts,js,nextjs,react,tailwind,nodejs,sqlite,java,html,css,vercel,cloudflare,git,figma&perline=14" alt="TypeScript, JavaScript, Next.js, React, Tailwind, Node.js, SQLite, Java, HTML, CSS, Vercel, Cloudflare, Git, Figma">
-</p>
+I run **[USAD Labs](https://github.com/usad-labs)** with my friends. We build POS, booking, inventory, payroll, websites and AI automation for SMEs in the Philippines.
 
-### Work with us
+<br>
 
-Running a business on paper, group chats and five different apps? That's the problem we fix. Message me here on GitHub or through my [portfolio](https://2asb2.github.io/Banas_WebPortfolio/).
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/footer-dark.svg">
+  <img src="assets/footer.svg" width="100%" alt="">
+</picture>
+
+</div>
