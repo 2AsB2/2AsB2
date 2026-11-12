@@ -1,8 +1,7 @@
-<img src="assets/banner.svg" alt="Ange, CEO and COO at USAD Labs. Connect. Automate. Accelerate." width="100%">
 
 ## Hi, I'm Ange
 
-I run **USAD Labs**, a small software studio for SMEs in the Philippines. We replace scattered spreadsheets, chat threads and manual work with one system that runs the business: retail, food and beverage, and service shops.
+I'm part of **USAD Labs**, a small software startup company for SMEs in the Philippines. We replace scattered spreadsheets, chat threads and manual work with one system that runs the business: retail, food and beverage, and service shops.
 
 I handle strategy, sales and project delivery, and I still build: most of what's below is my code.
 
