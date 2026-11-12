@@ -98,24 +98,52 @@ const hero = svg(840, 280,
   typed("t2", "we build the systems small businesses run on.", 292, 194, 18, C.ink, 1.4, `<tspan class="cur"> _</tspan>`) +
   `<text x="292" y="232" font-size="13" fill="${C.muted}" font-family="${SANS}">built with friends  ·  philippines  ·  open for projects</text>`);
 
-// ---------- bookshelf: work on top, off hours below ----------
+// ---------- bookshelf: work on top, off hours below, plus a few things on the shelves ----------
 const SPINE = [C.cobalt, C.sand, C.terra, C.ink, C.olive];
+const WOOD = sfx ? ["#7A5338", "#4E3424"] : ["#9A6B47", "#6E4A31"];
+const textOn = (col) => col === C.sand ? C.ink : col === C.ink ? C.paper : C.onSpine;
+// a spine: shaded left edge, two bands at the top, one at the bottom, title running up
+function book(x, baseY, w, h, col, title, delay) {
+  const ink = textOn(col);
+  return `<g class="b" style="animation-delay:${delay.toFixed(2)}s">` +
+    `<rect x="${x}" y="${baseY - h}" width="${w}" height="${h}" fill="${col}"/>` +
+    `<rect x="${x}" y="${baseY - h}" width="3" height="${h}" fill="${SPRITE}" opacity=".2"/>` +
+    `<rect x="${x + 3}" y="${baseY - h + 7}" width="${w - 3}" height="2" fill="${ink}"/>` +
+    `<rect x="${x + 3}" y="${baseY - h + 11}" width="${w - 3}" height="2" fill="${ink}"/>` +
+    `<rect x="${x + 3}" y="${baseY - 8}" width="${w - 3}" height="2" fill="${ink}"/>` +
+    (title ? `<text transform="translate(${x + w / 2 + 5} ${baseY - 15}) rotate(-90)" font-size="12" font-weight="600" fill="${ink}" font-family="${SANS}">${title}</text>` : "") + `</g>`;
+}
 function shelf(label, titles, baseY, startDelay) {
-  let x = 40, out = `<text x="40" y="${baseY - 132}" font-size="13" fill="${C.muted}" font-family="${SANS}">${label}</text>`;
+  let x = 40, out = `<text x="40" y="${baseY - 136}" font-size="13" fill="${C.muted}" font-family="${SANS}">${label}</text>`;
   titles.forEach((t, i) => {
-    const w = 34 + (t.length % 3) * 6, h = 92 + ((i * 37) % 28), col = SPINE[i % SPINE.length];
-    const ink = col === C.sand || col === C.ink ? (col === C.ink ? C.paper : C.ink) : C.onSpine;
-    out += `<g class="b" style="animation-delay:${(startDelay + i * 0.12).toFixed(2)}s">` +
-      `<rect x="${x}" y="${baseY - h}" width="${w}" height="${h}" fill="${col}"/>` +
-      `<text transform="translate(${x + w / 2 + 4} ${baseY - 10}) rotate(-90)" font-size="12" font-weight="600" fill="${ink}" font-family="${SANS}">${t}</text></g>`;
+    const w = 34 + (t.length % 3) * 6, h = 104 + ((i * 37) % 22);
+    out += book(x, baseY, w, h, SPINE[i % SPINE.length], t, startDelay + i * 0.12);
     x += w + 4;
   });
-  return out + `<rect x="30" y="${baseY}" width="780" height="5" fill="${C.ink}"/>`;
+  // one untitled book leaning back onto the row
+  const lx = x + 22;
+  out += `<g transform="rotate(-14 ${lx} ${baseY})">${book(lx, baseY, 28, 96, SPINE[(titles.length + 1) % SPINE.length], "", startDelay + titles.length * 0.12)}</g>`;
+  return { svg: out, end: lx + 40 };
 }
+const flatStack = (x, baseY, delay) => [[86, C.terra], [74, C.cobalt], [80, C.olive]].map(([w, col], i) =>
+  `<g class="b" style="animation-delay:${(delay + i * 0.1).toFixed(2)}s"><rect x="${x + i * 4}" y="${baseY - (i + 1) * 13}" width="${w}" height="12" fill="${col}"/><rect x="${x + i * 4}" y="${baseY - (i + 1) * 13 + 5}" width="${w}" height="2" fill="${textOn(col)}"/></g>`).join("");
+const PS = 5;
+const prop = (rows, x, baseY, pal) => pixels(outline(rows), x, baseY - (rows.length + 2) * PS, PS, { o: SPRITE, ...pal });
+const PLANT = ["..g...g..", ".ggg.ggg.", "ggggggggg", "..ggggg..", "...ggg...", ".ppppppp.", ".ppppppp.", "..ppppp..", "..ppppp.."];
+const JAR = ["b.c.d", "b.c.d", "w.w.w", "w.w.w", "jjjjj", "jjjjj", "jjjjj", "jjjjj"];
+const MUG = ["mmmm..", "mmmmmm", "mmmm.m", "mmmm.m", "mmmmmm", "mmmm.."];
+const steam = (x, y, dx) => [[0, 0], [1, -1], [0, -2], [1, -3]].map(([c, r]) => `<rect x="${x + (c + dx) * PS}" y="${y + r * PS}" width="${PS}" height="${PS}" fill="${C.muted}"/>`).join("");
+const top = shelf("at usad labs", ["strategy", "sales", "delivery", "code", "pos", "booking", "inventory", "payroll", "websites", "ai"], 160, 0.2);
+const bottom = shelf("off hours", ["art", "reading", "coding", "sketches", "novels", "side projects"], 330, 1.6);
+const board = (y) => `<rect x="28" y="${y}" width="784" height="4" fill="${WOOD[0]}"/><rect x="28" y="${y + 4}" width="784" height="5" fill="${WOOD[1]}"/>`;
 const bookshelf = svg(840, 360,
-  `.b{animation:up .4s ease-out both}@keyframes up{from{opacity:0;transform:translateY(8px)}}`,
-  shelf("at usad labs", ["strategy", "sales", "delivery", "code", "pos", "booking", "inventory", "payroll", "websites", "ai"], 160, 0.2) +
-  shelf("off hours", ["art", "reading", "coding", "sketches", "novels", "side projects"], 330, 1.6));
+  `.b{animation:up .4s ease-out both}@keyframes up{from{opacity:0;transform:translateY(8px)}}.f0{animation:f0 1.2s step-end infinite}.f1{animation:f1 1.2s step-end infinite}@keyframes f0{50%{opacity:0}}@keyframes f1{0%{opacity:0}50%{opacity:1}}`,
+  `<rect x="22" y="18" width="6" height="321" fill="${WOOD[1]}"/><rect x="812" y="18" width="6" height="321" fill="${WOOD[1]}"/>` +
+  top.svg + flatStack(top.end + 10, 160, 1.4) + prop(PLANT, 690, 160, { g: C.olive, p: C.terra }) + board(160) +
+  bottom.svg + prop(JAR, bottom.end + 20, 330, { b: C.cobalt, c: C.terra, d: C.olive, w: WOOD[0], j: C.sand }) +
+  prop(MUG, bottom.end + 110, 330, { m: C.cobalt }) +
+  `<g class="f0">${steam(bottom.end + 110 + 10, 330 - 48, 0)}</g><g class="f1">${steam(bottom.end + 110 + 10, 330 - 48, 1)}</g>` +
+  flatStack(660, 330, 2.6) + board(330));
 
 // ---------- project cards with a small pixel icon each ----------
 const ICONS = {
