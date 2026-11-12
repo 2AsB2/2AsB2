@@ -24,7 +24,7 @@
 
 <br><br>
 
-I run **[USAD Labs](https://github.com/usad-labs)** with my friends. We build POS, booking, inventory, payroll, websites and AI automation for SMEs in the Philippines.
+I'm part of **[USAD Labs](https://github.com/usad-labs)**, a small software startup for SMEs in the Philippines. With my friends, we build POS, booking, inventory, payroll, websites and AI automation.
 
 <br>
 
