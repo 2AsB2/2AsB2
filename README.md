@@ -2,7 +2,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
-  <img src="assets/hero.svg" width="100%" alt="ANGE: ceo of usad labs. we build the systems small businesses run on. built with friends, philippines, open for projects.">
+  <img src="assets/hero.svg" width="100%" alt="ANGE: usad labs. we build the systems small businesses run on. built with friends, philippines, open for projects.">
 </picture>
 
 <br><br>
