@@ -94,8 +94,7 @@ const hero = svg(840, 280,
   `<rect x="${EX - 12}" y="${groundY - 2}" width="${ermine[0].length * ES + 24}" height="6" fill="${C.sand}"/>` +
   `<g class="fa">${pixels(ermine, EX, EY, ES, erminePal()) + eyes(0) + mole(0)}</g><g class="fb">${pixels(ermineB, EX, EY, ES, erminePal()) + eyes(1) + mole(1)}</g>` +
   word("ANGE", 290, 66, 8) +
-  typed("t1", "ceo of usad labs.", 292, 166, 18, C.ink, 0.4) +
-  typed("t2", "we build the systems small businesses run on.", 292, 194, 18, C.ink, 1.4, `<tspan class="cur"> _</tspan>`) +
+  typed("t2", "we build the systems small businesses run on.", 292, 180, 18, C.ink, 0.4, `<tspan class="cur"> _</tspan>`) +
   `<text x="292" y="232" font-size="13" fill="${C.muted}" font-family="${SANS}">built with friends  ·  philippines  ·  open for projects</text>`);
 
 // ---------- bookshelf: work on top, off hours below, plus a few things on the shelves ----------
